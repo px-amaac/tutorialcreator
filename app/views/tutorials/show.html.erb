@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @tutorial.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @tutorial.author %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @tutorial.description %>
+</p>
+	<%= render partial: 'step', collection: @steps, :locals => { :tutorial_id => @tutorial.id } %> 
+
+  <% if user_signed_in? && @tutorial.user_id == current_user.id %>
+    <%= render 'steps_form' %>
+  <% end %>
+
+<%= link_to 'Edit', edit_tutorial_path(@tutorial) %> |
+<%= link_to 'Back', tutorials_path %>

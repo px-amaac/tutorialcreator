@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  problem: MyText
+  solution: MyText
+  tutorial_id: 
+
+two:
+  title: MyString
+  problem: MyText
+  solution: MyText
+  tutorial_id: 

@@ -1,0 +1,16 @@
+<%# navigation styled for Zurb Foundation 5 %>
+<div class="fixed">
+	<nav class="top-bar" data-topbar>
+	  <ul class="title-area">
+	    <li>
+        	<h2><%=link_to "Tutorial Creator", root_path %></h2>
+      	</li>
+	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	  </ul>
+	  <section class="top-bar-section">
+	    <ul class="right">
+	      <%= render 'layouts/navigation_links' %>
+	    </ul>
+	  </section>
+	</nav>
+</div>

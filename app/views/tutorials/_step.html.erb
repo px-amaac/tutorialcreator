@@ -1,0 +1,8 @@
+<% if step.title != nil %>
+	<p>
+		<%= step.title %>
+		<%= step.problem %>
+		<%= step.solution %>
+		<%= link_to 'Destroy', tutorial_step_path(step, tutorial_id), method: :delete, data: { confirm: 'Are you sure?' } %>
+	</p>
+<% end %>

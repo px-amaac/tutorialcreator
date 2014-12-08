@@ -1,0 +1,16 @@
+<div class="row">
+  <% @tutorials.each do |tutorial| %>
+    <div class="row">
+    <h3> <%= link_to tutorial.title, tutorial_path(tutorial) %> </h3>
+      <% if user_signed_in? && tutorial.user_id == current_user.id %>
+      	<h3> <%= link_to tutorial.title, tutorial_path(tutorial) %> </h3>
+      <% else %>
+        <h3> <%= tutorial.title %> </h3>
+      <% end %>
+      <%= tutorial.description %>
+      <% if user_signed_in? && tutorial.user_id == current_user.id %>
+		<%= link_to 'Destroy', tutorial, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button alert tiny" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
