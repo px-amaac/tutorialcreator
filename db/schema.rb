@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203090306) do
+ActiveRecord::Schema.define(version: 20141208081726) do
 
   create_table "codeblocks", force: true do |t|
     t.text     "code"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "step_id"
   end
+
+  add_index "codeblocks", ["step_id"], name: "index_codeblocks_on_step_id"
 
   create_table "steps", force: true do |t|
     t.string   "title"

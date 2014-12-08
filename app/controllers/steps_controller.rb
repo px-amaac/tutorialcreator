@@ -1,6 +1,6 @@
 class StepsController < ApplicationController
 
-	before_action :correct_user, only: [:create, :destroy]
+	before_action :correct_user, only: [:create, :destroy, :show]
 
 	def create
 		@step = @tutorial.steps.create(step_params)
@@ -13,10 +13,15 @@ class StepsController < ApplicationController
 		redirect_to @tutorial
 	end
 
+	def show
+		@step = Step.find(params[:id])
+	end
+
 	# DELETE /tutorials/1
   # DELETE /tutorials/1.json
   def destroy
-    :step.destroy
+  	@step = Step.find(params[:id])
+    @step.destroy
     respond_to do |format|
       format.html { redirect_to @tutorial, notice: 'Step was successfully destroyed.' }
       format.json { head :no_content }

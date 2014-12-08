@@ -3,6 +3,12 @@
 		<%= step.title %>
 		<%= step.problem %>
 		<%= step.solution %>
-		<%= link_to 'Destroy', tutorial_step_path(step, tutorial_id), method: :delete, data: { confirm: 'Are you sure?' } %>
+		<%= link_to 'Show', tutorial_step_path(tutorial_id, step) %>
+		<%= link_to 'Destroy', tutorial_step_path(tutorial_id, step), method: :delete, data: { confirm: 'Are you sure?' } %>
+	<% if @tutorial %>
+		<% if user_signed_in? && @tutorial.user_id == current_user.id %>
+    		<%= render 'helpers/codeblocks_form' %>
+  		<% end %>
+	<% end %>
 	</p>
 <% end %>
