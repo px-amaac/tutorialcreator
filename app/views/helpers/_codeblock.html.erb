@@ -1,0 +1,7 @@
+<% if !codeblock.nil? %>
+	<p>
+		<code><%= codeblock.code %></code>
+		<%= codeblock.description %>
+		<%= link_to 'Destroy', tutorial_step_codeblock_path(tutorial_id, step_id, codeblock), method: :delete, data: { confirm: 'Are you sure?' } %>
+	</p>
+<% end %>

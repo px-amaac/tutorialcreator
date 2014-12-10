@@ -10,16 +10,16 @@ class CodeblocksController < ApplicationController
 		else
 			flash[:error] = "Failed to add CodeBlock"
 		end
-		redirect_to @tutorial
+		redirect_to tutorial_step_url(@tutorial, @step)
 	end
 
 	# DELETE /tutorials/1
   # DELETE /tutorials/1.json
   def destroy
-  	@codeblock = Codeblock.find(params[:id])
+  	@codeblock = @step.codeblocks.find_by(id: params[:id])
     @codeblock.destroy
     respond_to do |format|
-      format.html { redirect_to @step, notice: 'CodeBlock was successfully destroyed.' }
+      format.html { redirect_to tutorial_step_url(@tutorial, @step), notice: 'CodeBlock was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -28,7 +28,7 @@ class CodeblocksController < ApplicationController
 		def correct_step
 			@tutorial = current_user.tutorials.find_by(id: params[:tutorial_id])
 			@step = @tutorial.steps.find_by(id: params[:step_id])
-			redirect_to root_url if @step.nil?
+			redirect_to root_url if @step.nil? || @tutorial.nil?
 		end
 
 		def codeblock_params

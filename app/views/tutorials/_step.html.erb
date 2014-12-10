@@ -5,9 +5,13 @@
 		<%= step.solution %>
 		<%= link_to 'Show', tutorial_step_path(tutorial_id, step) %>
 		<%= link_to 'Destroy', tutorial_step_path(tutorial_id, step), method: :delete, data: { confirm: 'Are you sure?' } %>
+		<%= render partial: 'helpers/codeblock', collection: step.codeblocks, locals: {:tutorial_id => tutorial_id, :step_id => step.id} %> 
 	<% if @tutorial %>
 		<% if user_signed_in? && @tutorial.user_id == current_user.id %>
-    		<%= render 'helpers/codeblocks_form' %>
+		<%= button_tag 'Add Codeblock', class: 'codeblock-form-show' %>
+			<div class='codeblock-form-wrapper'>
+    			<%= render partial: 'helpers/codeblocks_form', locals: { :tutorial_id => tutorial_id, :step => step }  %>
+    		</div>
   		<% end %>
 	<% end %>
 	</p>

@@ -1,1 +1,14 @@
-hey bitches
+<p>
+	<%= form_for step.codeblocks.build, url: tutorial_step_codeblocks_path(tutorial_id, step.id), method: :post do |codeblock| %>
+
+  		<div class="field">
+    		<%= codeblock.label :code %>
+    		<%= codeblock.text_area :code %>
+  		</div>
+  		<div class="field">
+    		<%= codeblock.label :description %>
+    		<%= codeblock.text_area :description %>
+  		</div>
+  		<%= codeblock.submit "Add CodeBlock", class: "button success" %>
+	<% end %>
+</p>
