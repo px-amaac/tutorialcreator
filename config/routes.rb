@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+
   resources :tutorials do
-    resources :steps, only: [:create, :destroy, :show] do
-      resources :codeblocks, only: [:create, :destroy, :show]
+    resources :steps, except: [:new] do
+      resources :codeblocks, except: [:new]
+      resources :screenshots, except: [:new]
     end
   end
 

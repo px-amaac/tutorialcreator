@@ -1,0 +1,20 @@
+<p>
+	<%= form_for current_screenshot, url: tutorial_step_screenshots_path(tutorial_id, step_id), method: :post do |screenshot| %>
+
+  		<div class="field">
+    		<%= screenshot.label :caption %>
+    		<%= screenshot.text_field :caption %>
+  		</div>
+  		<div class="field">
+    		<%= screenshot.label :description %>
+    		<%= screenshot.text_area :description %>
+  		</div>
+      <% if current_screenshot.image.url %>
+        <%= image_tag current_screenshot.image.url(:medium) %>
+      <% end %>
+      <div>
+        <%= screenshot.file_field :image %>
+      </div>
+  		<%= screenshot.submit "ScreenShot", class: "button success" %>
+	<% end %>
+</p>

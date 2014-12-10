@@ -1,0 +1,10 @@
+<% if !screenshot.image.url.nil? %>
+	<p>
+		<%= image_tag screenshot.image.url(:medium) %>
+		<%= screenshot.caption %>
+		<%= screenshot.description %>
+		<%= link_to 'Show', tutorial_step_screenshot_path(tutorial_id, step_id, screenshot) %>
+		<%= link_to 'Edit', edit_tutorial_step_screenshot_path(tutorial_id, step_id, screenshot) %>
+		<%= link_to 'Destroy', tutorial_step_screenshot_path(tutorial_id, step_id, screenshot), method: :delete, data: { confirm: 'Are you sure?' } %>
+	</p>
+<% end %>

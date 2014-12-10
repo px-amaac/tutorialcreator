@@ -17,7 +17,7 @@
 	<%= render partial: 'step', collection: @steps, :locals => { :tutorial_id => @tutorial.id } %> 
 
   <% if user_signed_in? && @tutorial.user_id == current_user.id %>
-    <%= render 'steps_form' %>
+    <%= render partial: 'steps_form', :locals => { :tutorial => @tutorial, :step => @step} %>
   <% end %>
 
 <%= link_to 'Edit', edit_tutorial_path(@tutorial) %> |

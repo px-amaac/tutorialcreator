@@ -1,6 +1,7 @@
 class StepsController < ApplicationController
 
-	before_action :correct_user, only: [:create, :destroy, :show]
+	before_action :correct_user
+	before_action :set_step, only: [:show, :edit, :update, :destroy]
 
 	def create
 		@step = @tutorial.steps.create(step_params)
@@ -14,13 +15,26 @@ class StepsController < ApplicationController
 	end
 
 	def show
-		@step = Step.find(params[:id])
+	end
+
+	def edit
+	end
+
+	def update
+		respond_to do |format|
+	  if @step.update(step_params)
+	    format.html { redirect_to tutorial_step_url(@tutorial, @step), notice: 'Step was successfully updated.' }
+	    format.json { render :show, status: :ok, location: @step }
+	  else
+	    format.html { render :edit }
+	    format.json { render json: @step.errors, status: :unprocessable_entity }
+	  end
+	end
 	end
 
 	# DELETE /tutorials/1
   # DELETE /tutorials/1.json
   def destroy
-  	@step = Step.find(params[:id])
     @step.destroy
     respond_to do |format|
       format.html { redirect_to @tutorial, notice: 'Step was successfully destroyed.' }
@@ -36,5 +50,8 @@ class StepsController < ApplicationController
 
 		def step_params
 			params.require(:step).permit(:title, :problem, :solution)
+		end
+		def set_step
+			@step = @tutorial.steps.find_by(id: params[:id])
 		end
 end

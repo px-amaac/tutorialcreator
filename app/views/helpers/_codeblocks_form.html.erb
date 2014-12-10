@@ -10,5 +10,6 @@
     		<%= codeblock.text_area :description %>
   		</div>
   		<%= codeblock.submit "Add CodeBlock", class: "button success" %>
+      <%= link_to 'Remove CodeBlock', '#', class: 'codeblock-form-hide', remote: true %>
 	<% end %>
 </p>
