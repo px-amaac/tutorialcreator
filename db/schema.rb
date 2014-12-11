@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210055919) do
+ActiveRecord::Schema.define(version: 20141211095833) do
 
   create_table "codeblocks", force: true do |t|
     t.text     "code"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141210055919) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "step_id"
+    t.string   "file_name"
   end
 
   add_index "codeblocks", ["step_id"], name: "index_codeblocks_on_step_id"
@@ -36,6 +37,17 @@ ActiveRecord::Schema.define(version: 20141210055919) do
   end
 
   add_index "screenshots", ["step_id"], name: "index_screenshots_on_step_id"
+
+  create_table "sections", force: true do |t|
+    t.integer  "step_id"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sections", ["item_id", "item_type"], name: "index_sections_on_item_id_and_item_type"
+  add_index "sections", ["step_id"], name: "index_sections_on_step_id"
 
   create_table "steps", force: true do |t|
     t.string   "title"

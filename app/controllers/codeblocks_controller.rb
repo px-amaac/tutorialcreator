@@ -5,6 +5,9 @@ class CodeblocksController < ApplicationController
 	def create
 		@codeblock = @step.codeblocks.create(codeblock_params)
 		if @codeblock.save
+			@section = @step.sections.build
+      		@section.item = @codeblock
+      		@section.save
 			flash[:success] = "CodeBlock added"
 			
 		else
@@ -32,6 +35,6 @@ class CodeblocksController < ApplicationController
 		end
 
 		def codeblock_params
-			params.require(:codeblock).permit(:code, :description)
+			params.require(:codeblock).permit(:file_name, :code, :description)
 		end
 end

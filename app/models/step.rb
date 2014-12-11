@@ -3,4 +3,5 @@ class Step < ActiveRecord::Base
   has_many :tutorials, :through => :tutorial_step_relationships
   has_many :codeblocks, dependent: :destroy
   has_many :screenshots, dependent: :destroy
+  has_many :sections, dependent: :destroy
 end

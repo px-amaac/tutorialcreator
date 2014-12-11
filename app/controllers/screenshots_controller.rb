@@ -5,6 +5,9 @@ class ScreenshotsController < ApplicationController
 	def create
 		@screenshot = @step.screenshots.create(screenshot_params)
 		if @screenshot.save
+      @section = @step.sections.build
+      @section.item = @screenshot
+      @section.save
 			flash[:success] = "Screenshot added"
 			
 		else

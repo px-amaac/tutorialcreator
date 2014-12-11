@@ -26,10 +26,14 @@
         <header>
           <%= render 'layouts/navigation' %>
         </header>
-        <main role="main">
-          <%= render 'layouts/messages' %>
-          <%= yield %>
-        </main>
+        <div class="row">
+          <div class="large-12 columns">
+            <main role="main">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+            </main>
+          </div>
+        </div>
       <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     </body>
   </div>

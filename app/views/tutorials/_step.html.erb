@@ -1,13 +1,24 @@
 <% if step.title != nil %>
 	<p>
-		<%= step.title %>
-		<%= step.problem %>
-		<%= step.solution %>
+		<h3><%= step.title %></h3></br>
+
+ 		<h5 class="subheader"><b>Problem:</b></br></h5>
+		<%= markdown(step.problem) %>
+		<h5 class="subheader"><b>Solution:</b></br></h5>
+		<%= markdown(step.solution) %>
 		<%= link_to 'Show', tutorial_step_path(tutorial_id, step) %>
 		<%= link_to 'Edit', edit_tutorial_step_path(tutorial_id, step) %>
 		<%= link_to 'Destroy', tutorial_step_path(tutorial_id, step), method: :delete, data: { confirm: 'Are you sure?' } %>
-		<%= render partial: 'helpers/codeblock', collection: step.codeblocks, locals: {:tutorial_id => tutorial_id, :step_id => step.id} %> 
-		<%= render partial: 'helpers/screenshot', collection: step.screenshots, locals: {:tutorial_id => tutorial_id, :step_id => step.id} %>
+
+	<p>
+		<% if !step.sections.empty? %>
+			<% step.sections.each do |section| %>
+				<%= render partial: "helpers/#{section.item_type.downcase}", locals: {:tutorial_id => tutorial_id, :step_id => step.id, :item => section.item } %> 
+			<% end %> 
+
+		<% end %>
+	</p>
+
 	<% if @tutorial %>
 		<% if user_signed_in? && @tutorial.user_id == current_user.id %>
 		<%= button_tag 'Add Codeblock', class: 'codeblock-form-show' %>
@@ -21,4 +32,5 @@
   		<% end %>
 	<% end %>
 	</p>
+	
 <% end %>

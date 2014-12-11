@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @tutorial.title %>
+  <h1><%= @tutorial.title %></h1>
+  <h6 class="subheader"><b>Author:</b> <%= @tutorial.author %></h6>
 </p>
 
 <p>
-  <strong>Author:</strong>
-  <%= @tutorial.author %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @tutorial.description %>
+  <h5 class="subheader"><b>Description:</b></br>
+  <%= markdown(@tutorial.description) %>
 </p>
 	<%= render partial: 'step', collection: @steps, :locals => { :tutorial_id => @tutorial.id } %> 
 
