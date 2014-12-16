@@ -1,0 +1,15 @@
+	<%= form_for current_textblock, url: tutorial_step_textblocks_path(tutorial_id, step_id), method: :post do |textblock| %>
+      <fieldset>
+    		<div class="field">
+      		<%= textblock.label :title %>
+      		<%= textblock.text_field :title %>
+    		</div>
+    		<div class="field">
+      		<%= textblock.label :textblock %>
+      		<%= textblock.text_area :textblock %>
+    		</div>
+        
+    		<%= textblock.submit "Submit TextBlock", class: "button success" %>
+        <%= link_to 'Remove TextBlock', '#', class: 'textblock-form-hide' %>
+      </fieldset>
+	<% end %>

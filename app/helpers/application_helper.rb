@@ -6,7 +6,7 @@ module ApplicationHelper
 	end
 
 	def codeformat(text, language)
-		Pygments.highlight(text).html_safe
+		Pygments.highlight(text, :options => {:filename => language}).html_safe
 	end
 
 	def markdown(text)

@@ -7,8 +7,10 @@
 		<h5 class="subheader"><b>Solution:</b></br></h5>
 		<%= markdown(step.solution) %>
 		<%= link_to 'Show', tutorial_step_path(tutorial_id, step) %>
-		<%= link_to 'Edit', edit_tutorial_step_path(tutorial_id, step) %>
-		<%= link_to 'Destroy', tutorial_step_path(tutorial_id, step), method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% if user_signed_in? && @tutorial.user_id == current_user.id %>
+			<%= link_to 'Edit', edit_tutorial_step_path(tutorial_id, step) %>
+			<%= link_to 'Destroy', tutorial_step_path(tutorial_id, step), method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
 
 	<p>
 		<% if !step.sections.empty? %>
@@ -23,11 +25,15 @@
 		<% if user_signed_in? && @tutorial.user_id == current_user.id %>
 		<%= button_tag 'Add Codeblock', class: 'codeblock-form-show' %>
 		<%= button_tag 'Add Screen Shot', class: 'screenshot-form-show' %>
+		<%= button_tag 'Add Textblock', class: 'textblock-form-show' %>
 			<div class='codeblock-form-wrapper'>
-    			<%= render partial: 'helpers/codeblocks_form', locals: { :tutorial_id => tutorial_id, :step => step }  %>
+    			<%= render partial: 'helpers/codeblocks_form', locals: { :tutorial_id => tutorial_id, :step_id => step.id, :current_codeblock => step.codeblocks.build }  %>
     		</div>
     		<div class='screenshot-form-wrapper'>
     			<%= render partial: 'helpers/screenshots_form', locals: { :tutorial_id => tutorial_id, :step_id => step.id, :current_screenshot => step.screenshots.build } %>
+			</div>
+			<div class='textblock-form-wrapper'>
+    			<%= render partial: 'helpers/textblocks_form', locals: { :tutorial_id => tutorial_id, :step_id => step.id, :current_textblock => step.textblocks.build } %>
 			</div>
   		<% end %>
 	<% end %>

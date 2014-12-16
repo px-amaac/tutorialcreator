@@ -21,8 +21,8 @@
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
+  <body>
   <div id="container" class="container">
-    <body>
         <header>
           <%= render 'layouts/navigation' %>
         </header>
@@ -35,6 +35,6 @@
           </div>
         </div>
       <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+      </div>
     </body>
-  </div>
 </html>

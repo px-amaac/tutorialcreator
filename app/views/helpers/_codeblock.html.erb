@@ -1,8 +1,11 @@
 <% if !item.nil? %>
 	<p>
-		<%= item.file_name %>
+		<h4 class="subheader"><%= item.file_name %></h4>
+		<% if user_signed_in? && @tutorial.user_id == current_user.id %>
+			<%= link_to 'Edit', edit_tutorial_step_codeblock_path(tutorial_id, step_id, item) %>
+			<%= link_to 'Destroy', tutorial_step_codeblock_path(tutorial_id, step_id, item), method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
 		<%= codeformat(item.code, item.file_name) %>
 		<%= item.description %>
-		<%= link_to 'Destroy', tutorial_step_codeblock_path(tutorial_id, step_id, item), method: :delete, data: { confirm: 'Are you sure?' } %>
 	</p>
 <% end %>

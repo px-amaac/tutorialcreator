@@ -1,6 +1,6 @@
 class ScreenshotsController < ApplicationController
-  before_action :correct_step, only: [:create, :destroy, :show, :edit, :update]
-  before_action :set_step, only: [:show, :edit, :update, :destroy]
+  before_action :correct_step, only: [:create, :destroy, :edit, :update]
+  before_action :set_screenshot, only: [:show, :edit, :update, :destroy]
 
 	def create
 		@screenshot = @step.screenshots.create(screenshot_params)
@@ -50,12 +50,15 @@ class ScreenshotsController < ApplicationController
 			@tutorial = current_user.tutorials.find_by(id: params[:tutorial_id])
 			@step = @tutorial.steps.find_by(id: params[:step_id])
 			redirect_to root_url if @step.nil? || @tutorial.nil?
+      @screenshot = @step.screenshots.find_by(id: params[:id])
 		end
 
 		def screenshot_params
 			params.require(:screenshot).permit(:caption, :description, :image)
 		end
-		def set_step
-			@screenshot = @step.screenshots.find_by(id: params[:id])
+		def set_screenshot
+      @tutorial = Tutorial.find_by(id: params[:tutorial_id])
+      @step = @tutorial.steps.find_by(id: params[:step_id])
+      @screenshot = @step.screenshots.find_by(id: params[:id])
 		end
 end

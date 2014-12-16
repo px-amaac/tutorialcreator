@@ -1,7 +1,7 @@
 class StepsController < ApplicationController
 
-	before_action :correct_user
-	before_action :set_step, only: [:show, :edit, :update, :destroy]
+	before_action :correct_user, only: [:create, :edit, :update, :destroy]
+	before_action :set_step, only: [:show]
 
 	def create
 		@step = @tutorial.steps.create(step_params)
@@ -41,10 +41,16 @@ class StepsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
 	private
 		def correct_user
 			@tutorial = current_user.tutorials.find_by(id: params[:tutorial_id])
+			redirect_to root_url if @tutorial.nil?
+			@step = @tutorial.steps.find_by(id: params[:id])
+		end
+
+		def set_tutorial
+			@tutorial = Tutorial.find_by(id: params[:tutorial_id])
 			redirect_to root_url if @tutorial.nil?
 		end
 
@@ -52,6 +58,8 @@ class StepsController < ApplicationController
 			params.require(:step).permit(:title, :problem, :solution)
 		end
 		def set_step
+			@tutorial = Tutorial.find_by(id: params[:tutorial_id])
+			redirect_to root_url if @tutorial.nil?
 			@step = @tutorial.steps.find_by(id: params[:id])
 		end
 end

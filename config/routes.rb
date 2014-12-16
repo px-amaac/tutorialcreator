@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :steps, except: [:new] do
       resources :codeblocks, except: [:new]
       resources :screenshots, except: [:new]
+      resources :textblocks, except: [:new]
     end
   end
 

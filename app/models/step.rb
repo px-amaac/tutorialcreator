@@ -4,4 +4,5 @@ class Step < ActiveRecord::Base
   has_many :codeblocks, dependent: :destroy
   has_many :screenshots, dependent: :destroy
   has_many :sections, dependent: :destroy
+  has_many :textblocks, dependent: :destroy
 end

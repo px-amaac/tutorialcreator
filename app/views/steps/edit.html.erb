@@ -1,1 +1,3 @@
+<h1>Editing Step</h1>
 <%= render partial: 'tutorials/steps_form', :locals => { :tutorial => @tutorial, :step => @step} %>
+<%= link_to 'Show', tutorial_step_url(@tutorial, @step) %>

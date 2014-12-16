@@ -16,3 +16,22 @@ $('.screenshot-form-hide').click(function() {
 	$('.screenshot-form-wrapper').hide()
 	$('.screenshot-form-show').show()
 })
+
+$('.textblock-form-show').click(function() {
+	$('.textblock-form-wrapper').show()
+	$('.textblock-form-show').hide()
+})
+
+$('.textblock-form-hide').click(function() {
+	$('.textblock-form-wrapper').hide()
+	$('.textblock-form-show').show()
+})
+$('.step-form-show').click(function() {
+	$('.step-form-wrapper').show()
+	$('.step-form-show').hide()
+})
+
+$('.step-form-hide').click(function() {
+	$('.step-form-wrapper').hide()
+	$('.step-form-show').show()
+})

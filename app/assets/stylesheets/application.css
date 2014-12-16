@@ -62,3 +62,7 @@ border-radius: 10px; /* future proofing */
   letter-spacing: -1px;
   
 }
+
+textarea{
+  height: 300px;
+}

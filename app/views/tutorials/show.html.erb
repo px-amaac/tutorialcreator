@@ -2,6 +2,9 @@
 
 <p>
   <h1><%= @tutorial.title %></h1>
+  <% if user_signed_in? && @tutorial.user_id == current_user.id %>
+    <%= button_tag 'Add Step', class: 'step-form-show' %> 
+  <% end %>
   <h6 class="subheader"><b>Author:</b> <%= @tutorial.author %></h6>
 </p>
 
@@ -12,8 +15,9 @@
 	<%= render partial: 'step', collection: @steps, :locals => { :tutorial_id => @tutorial.id } %> 
 
   <% if user_signed_in? && @tutorial.user_id == current_user.id %>
-    <%= render partial: 'steps_form', :locals => { :tutorial => @tutorial, :step => @step} %>
+    <div class='step-form-wrapper'>
+      <%= render partial: 'steps_form', :locals => { :tutorial => @tutorial, :step => @step} %>
+    </div>
   <% end %>
-
 <%= link_to 'Edit', edit_tutorial_path(@tutorial) %> |
 <%= link_to 'Back', tutorials_path %>

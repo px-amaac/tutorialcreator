@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211095833) do
+ActiveRecord::Schema.define(version: 20141212011916) do
 
   create_table "codeblocks", force: true do |t|
     t.text     "code"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 20141211095833) do
   end
 
   add_index "steps", ["tutorial_id"], name: "index_steps_on_tutorial_id"
+
+  create_table "textblocks", force: true do |t|
+    t.string   "title"
+    t.text     "textblock"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "step_id"
+  end
+
+  add_index "textblocks", ["step_id"], name: "index_textblocks_on_step_id"
 
   create_table "tutorial_step_relationships", force: true do |t|
     t.integer "tutorial_id"

@@ -1,5 +1,5 @@
 <p>
-	<%= form_for step.codeblocks.build, url: tutorial_step_codeblocks_path(tutorial_id, step.id), method: :post do |codeblock| %>
+	<%= form_for current_codeblock, url: tutorial_step_codeblocks_path(tutorial_id, step_id), method: :post do |codeblock| %>
       <fieldset>
         <div class="field">
           <%= codeblock.label :file_name %>
