@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :projects
+
+  resources :jobs
+
   resources :tutorials do
     resources :steps, except: [:new] do
       resources :codeblocks, except: [:new]

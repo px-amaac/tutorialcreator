@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212011916) do
+ActiveRecord::Schema.define(version: 20150219203651) do
 
   create_table "codeblocks", force: true do |t|
     t.text     "code"
@@ -23,6 +23,27 @@ ActiveRecord::Schema.define(version: 20141212011916) do
   end
 
   add_index "codeblocks", ["step_id"], name: "index_codeblocks_on_step_id"
+
+  create_table "jobs", force: true do |t|
+    t.string   "companyName"
+    t.string   "jobTitle"
+    t.text     "jobDescription"
+    t.date     "startDate"
+    t.date     "endDate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id"
+
+  create_table "projects", force: true do |t|
+    t.string   "projectName"
+    t.text     "description"
+    t.string   "site"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "screenshots", force: true do |t|
     t.string   "caption"
@@ -106,9 +127,11 @@ ActiveRecord::Schema.define(version: 20141212011916) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "job_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["job_id"], name: "index_users_on_job_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

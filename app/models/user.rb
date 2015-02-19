@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   has_many :tutorials
-
+  has_many :jobs
+  has_many :projects
   # Validate content type
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
       # Validate filename
