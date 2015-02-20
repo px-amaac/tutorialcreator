@@ -23,7 +23,19 @@
     <%= f.label :site %><br>
     <%= f.text_field :site %>
   </div>
+  <%= f.fields_for :app_screenshots do |screenshot| %>
+    <p>
+    <%= screenshot.label :caption, "Image Caption" %>
+    <%= screenshot.text_field :caption %>
+    </p>
+    <p>
+    <%= screenshot.label :image, "Image File" %>
+    <%= screenshot.file_field :image %>
+    </p>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
+
+
 <% end %>

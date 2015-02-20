@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219203651) do
+ActiveRecord::Schema.define(version: 20150220071228) do
+
+  create_table "app_screenshots", force: true do |t|
+    t.string   "caption"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "user_id"
+    t.integer  "project_id"
+  end
+
+  add_index "app_screenshots", ["project_id"], name: "index_app_screenshots_on_project_id"
+  add_index "app_screenshots", ["user_id"], name: "index_app_screenshots_on_user_id"
 
   create_table "codeblocks", force: true do |t|
     t.text     "code"
@@ -43,7 +58,10 @@ ActiveRecord::Schema.define(version: 20150219203651) do
     t.string   "site"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
 
   create_table "screenshots", force: true do |t|
     t.string   "caption"
